@@ -85,7 +85,7 @@ def scrape_description(client: httpx.Client, url: str, release_id: str) -> str:
         return ""
 
     for p in BeautifulSoup(html, "html.parser").find_all("p"):
-        t = " ".join(p.get_text(" ", strip=True).split())
+        t = " ".join(p.get_text().split())
         if not t or t.isupper() or t == title:
             continue
         if t.lower().startswith(SKIP_PREFIXES):
